@@ -2,9 +2,12 @@
 <nav>
   <div class="nav-wrapper teal">
      <ul class="right hide-on-med-and-down">
+      <li><router-link v-if="$store.state.isAuthenticated" to="/Home">Inicio</router-link></li>
       <li><router-link v-if="$store.state.isAuthenticated" to="/Estudiantes">Estudiantes</router-link></li>
+      <li><router-link v-if="$store.state.isAuthenticated" to="/Cursos">Cursos</router-link></li>
       <li><router-link v-if="!$store.state.isAuthenticated" :to="{name:'Login'}">Login</router-link></li>
-     </ul>
+      <li><a href="#!"  v-if="$store.state.isAuthenticated" @click="$store.commit('logout')">Logout</a></li>
+   </ul>
   </div>
 </nav>
 
@@ -12,7 +15,7 @@
     <router-view></router-view>
  </div>
 
-<div class="user-data">
+<div class="user-data"   v-if="$store.state.isAuthenticated">
    <h1 style="color:Red"> nombre: {{$store.state.nombre}}</h1>
 </div>
 </template>

@@ -1,5 +1,6 @@
+import router from '@/router';
 import {createStore} from 'vuex'
-
+ 
 const storage = createStore({
 
     state: {
@@ -14,6 +15,13 @@ const storage = createStore({
         setNombre(state, nombre){
             state.nombre = nombre;
             
+        },
+        logout(state)
+        {
+            state.isAuthenticated = false;
+            localStorage.removeItem('token');
+            state.nombre = '';
+            router.push('/Login');
         }
     }
 });
